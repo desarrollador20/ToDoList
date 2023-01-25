@@ -4,6 +4,7 @@ import { Button, Input, Switch } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { styles } from './UpdateTask.style';
 import { storageResult } from '../../utils';
+import normalize from 'react-native-normalize';
 
 
 
@@ -20,6 +21,22 @@ export function UpdateTask(props) {
         { label: 'Juan Camilo Patiño Ramos', value: 'Juan Camilo Patiño Ramos' },
         { label: 'Elvira Patiño Beltran', value: 'Elvira Patiño Beltran' },
     ];
+
+    const pickerStyle = {
+        inputIOS: {
+            color: 'gray',
+            height: normalize(40, "height"),
+            padding: normalize(10),
+        },
+        placeholder: {
+            color: 'gray',
+        },
+        inputAndroid: {
+            color: 'gray',
+            height: normalize(50, "height"),
+            paddingLeft: normalize(10),
+        },
+    };
 
     const updateTask = async () => {
 
@@ -74,7 +91,8 @@ export function UpdateTask(props) {
                     label: 'Seleccione un responsable',
                     value: null,
                 }}
-                value={userAssigned}
+                style={pickerStyle}
+                value={userResponsable != '' && userResponsable}
             />
 
             <Button title="Modificar Tarea" onPress={() => updateTask()} />
